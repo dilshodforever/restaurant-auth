@@ -19,7 +19,10 @@ type Config struct {
 
   DefaultOffset string
   DefaultLimit  string
+
+  TokenKey string
 }
+
 
 func Load() Config {
   if err := godotenv.Load(); err != nil {
@@ -38,7 +41,7 @@ func Load() Config {
 
   config.DefaultOffset = cast.ToString(getOrReturnDefaultValue("DEFAULT_OFFSET", "0"))
   config.DefaultLimit = cast.ToString(getOrReturnDefaultValue("DEFAULT_LIMIT", "10"))
-
+  config.TokenKey=cast.ToString(getOrReturnDefaultValue("TokenKey", "my_secret_key"))
   return config
 }
 

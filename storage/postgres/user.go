@@ -30,7 +30,7 @@ func (p *UserStorage) CreateUser(user *pb.User) (*pb.Void, error) {
 
 func (p *UserStorage) GetByIdUser(id *pb.ById) (*pb.User, error) {
 	query := `
-			SELECT name, email from users 
+			SELECT user_name, email from users 
 			where id =$1 and delated_at=0
 		`
 	row := p.db.QueryRow(query, id.Id)
@@ -51,7 +51,7 @@ func (p *UserStorage) GetAllUser(us *pb.User) (*pb.GetAllUsers, error) {
 	var arr []interface{}
 	count:=1
 	
-	query:=` SELECT name, email from users 
+	query:=` SELECT user_name, email from users 
 	where delated_at=0 `
 	if len(us.Email)>0{
 		query+=fmt.Sprintf(" and email=$%d", count)
@@ -98,3 +98,20 @@ func (p *UserStorage) DeleteUser(id *pb.ById) (*pb.Void, error) {
 	return nil, err
 }
 
+func (p *UserStorage) LoginUser(userName string) (*pb.User, error) {
+	query := `
+			SELECT user_name, email from users 
+			where user_name =$1 and delated_at=0
+		`
+	row := p.db.QueryRow(query, userName)
+
+	var user pb.User
+
+	err := row.Scan(&user.UserName,
+					&user.Email)
+	if err != nil {
+		return nil, err
+	}
+
+	return &user, nil
+}
