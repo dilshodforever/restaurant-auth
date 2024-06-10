@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 	"log"
+
 	pb "github.com/dilshodforever/restaurant-auth/genprotos"
 	s "github.com/dilshodforever/restaurant-auth/storage"
-
 )
 
 type UserService struct {

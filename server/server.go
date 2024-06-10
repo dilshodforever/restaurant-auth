@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net"
+
 	pb "github.com/dilshodforever/restaurant-auth/genprotos"
 	"github.com/dilshodforever/restaurant-auth/service"
 	postgres "github.com/dilshodforever/restaurant-auth/storage/postgres"
@@ -25,5 +26,5 @@ func main() {
 	if err := s.Serve(liss); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
-	
+
 }

@@ -38,7 +38,7 @@ func (p *UserStorage) GetByIdUser(id *pb.ById) (*pb.User, error) {
 	var user pb.User
 
 	err := row.Scan(&user.UserName,
-					&user.Email)
+		&user.Email)
 	if err != nil {
 		return nil, err
 	}
@@ -49,19 +49,19 @@ func (p *UserStorage) GetByIdUser(id *pb.ById) (*pb.User, error) {
 func (p *UserStorage) GetAllUser(us *pb.User) (*pb.GetAllUsers, error) {
 	users := &pb.GetAllUsers{}
 	var arr []interface{}
-	count:=1
-	
-	query:=` SELECT user_name, email from users 
+	count := 1
+
+	query := ` SELECT user_name, email from users 
 	where delated_at=0 `
-	if len(us.Email)>0{
-		query+=fmt.Sprintf(" and email=$%d", count)
+	if len(us.Email) > 0 {
+		query += fmt.Sprintf(" and email=$%d", count)
 		count++
-		arr=append(arr, us.Email)
+		arr = append(arr, us.Email)
 	}
-	if len(us.UserName)>0{
-		query+=fmt.Sprintf(" and user_name=$%d", count)
+	if len(us.UserName) > 0 {
+		query += fmt.Sprintf(" and user_name=$%d", count)
 		count++
-		arr=append(arr, us.UserName)
+		arr = append(arr, us.UserName)
 	}
 	row, err := p.db.Query(query, arr...)
 	if err != nil {
@@ -70,7 +70,7 @@ func (p *UserStorage) GetAllUser(us *pb.User) (*pb.GetAllUsers, error) {
 	for row.Next() {
 		var user pb.User
 		err = row.Scan(&user.UserName,
-					   &user.Email)
+			&user.Email)
 		if err != nil {
 			return nil, err
 		}
@@ -85,7 +85,7 @@ func (p *UserStorage) UpdateUser(user *pb.User) (*pb.Void, error) {
 		SET user_name = $2, email = $3
 		WHERE id = $1 
 	`
-	_, err := p.db.Exec(query, user.Id,user.UserName, user.Email)
+	_, err := p.db.Exec(query, user.Id, user.UserName, user.Email)
 	return nil, err
 }
 
@@ -108,7 +108,7 @@ func (p *UserStorage) LoginUser(userName string) (*pb.User, error) {
 	var user pb.User
 
 	err := row.Scan(&user.UserName,
-					&user.Email)
+		&user.Email)
 	if err != nil {
 		return nil, err
 	}
