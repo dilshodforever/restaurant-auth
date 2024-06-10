@@ -18,10 +18,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ElectionServiceClient is the client API for ElectionService service.
+// UserServiceClient is the client API for UserService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ElectionServiceClient interface {
+type UserServiceClient interface {
 	CreateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Void, error)
 	DeleteUser(ctx context.Context, in *ById, opts ...grpc.CallOption) (*Void, error)
 	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Void, error)
@@ -29,219 +29,219 @@ type ElectionServiceClient interface {
 	GetAllUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*GetAllUsers, error)
 }
 
-type electionServiceClient struct {
+type userServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewElectionServiceClient(cc grpc.ClientConnInterface) ElectionServiceClient {
-	return &electionServiceClient{cc}
+func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
+	return &userServiceClient{cc}
 }
 
-func (c *electionServiceClient) CreateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Void, error) {
+func (c *userServiceClient) CreateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Void, error) {
 	out := new(Void)
-	err := c.cc.Invoke(ctx, "/protos.ElectionService/CreateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.UserService/CreateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *electionServiceClient) DeleteUser(ctx context.Context, in *ById, opts ...grpc.CallOption) (*Void, error) {
+func (c *userServiceClient) DeleteUser(ctx context.Context, in *ById, opts ...grpc.CallOption) (*Void, error) {
 	out := new(Void)
-	err := c.cc.Invoke(ctx, "/protos.ElectionService/DeleteUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.UserService/DeleteUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *electionServiceClient) UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Void, error) {
+func (c *userServiceClient) UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Void, error) {
 	out := new(Void)
-	err := c.cc.Invoke(ctx, "/protos.ElectionService/UpdateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.UserService/UpdateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *electionServiceClient) GetByIdUser(ctx context.Context, in *ById, opts ...grpc.CallOption) (*User, error) {
+func (c *userServiceClient) GetByIdUser(ctx context.Context, in *ById, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
-	err := c.cc.Invoke(ctx, "/protos.ElectionService/GetByIdUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.UserService/GetByIdUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *electionServiceClient) GetAllUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*GetAllUsers, error) {
+func (c *userServiceClient) GetAllUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*GetAllUsers, error) {
 	out := new(GetAllUsers)
-	err := c.cc.Invoke(ctx, "/protos.ElectionService/GetAllUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.UserService/GetAllUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ElectionServiceServer is the server API for ElectionService service.
-// All implementations must embed UnimplementedElectionServiceServer
+// UserServiceServer is the server API for UserService service.
+// All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
-type ElectionServiceServer interface {
+type UserServiceServer interface {
 	CreateUser(context.Context, *User) (*Void, error)
 	DeleteUser(context.Context, *ById) (*Void, error)
 	UpdateUser(context.Context, *User) (*Void, error)
 	GetByIdUser(context.Context, *ById) (*User, error)
 	GetAllUser(context.Context, *User) (*GetAllUsers, error)
-	mustEmbedUnimplementedElectionServiceServer()
+	mustEmbedUnimplementedUserServiceServer()
 }
 
-// UnimplementedElectionServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedElectionServiceServer struct {
+// UnimplementedUserServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedUserServiceServer struct {
 }
 
-func (UnimplementedElectionServiceServer) CreateUser(context.Context, *User) (*Void, error) {
+func (UnimplementedUserServiceServer) CreateUser(context.Context, *User) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedElectionServiceServer) DeleteUser(context.Context, *ById) (*Void, error) {
+func (UnimplementedUserServiceServer) DeleteUser(context.Context, *ById) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedElectionServiceServer) UpdateUser(context.Context, *User) (*Void, error) {
+func (UnimplementedUserServiceServer) UpdateUser(context.Context, *User) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
 }
-func (UnimplementedElectionServiceServer) GetByIdUser(context.Context, *ById) (*User, error) {
+func (UnimplementedUserServiceServer) GetByIdUser(context.Context, *ById) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByIdUser not implemented")
 }
-func (UnimplementedElectionServiceServer) GetAllUser(context.Context, *User) (*GetAllUsers, error) {
+func (UnimplementedUserServiceServer) GetAllUser(context.Context, *User) (*GetAllUsers, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllUser not implemented")
 }
-func (UnimplementedElectionServiceServer) mustEmbedUnimplementedElectionServiceServer() {}
+func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
-// UnsafeElectionServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ElectionServiceServer will
+// UnsafeUserServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserServiceServer will
 // result in compilation errors.
-type UnsafeElectionServiceServer interface {
-	mustEmbedUnimplementedElectionServiceServer()
+type UnsafeUserServiceServer interface {
+	mustEmbedUnimplementedUserServiceServer()
 }
 
-func RegisterElectionServiceServer(s grpc.ServiceRegistrar, srv ElectionServiceServer) {
-	s.RegisterService(&ElectionService_ServiceDesc, srv)
+func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
+	s.RegisterService(&UserService_ServiceDesc, srv)
 }
 
-func _ElectionService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(User)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ElectionServiceServer).CreateUser(ctx, in)
+		return srv.(UserServiceServer).CreateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.ElectionService/CreateUser",
+		FullMethod: "/protos.UserService/CreateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElectionServiceServer).CreateUser(ctx, req.(*User))
+		return srv.(UserServiceServer).CreateUser(ctx, req.(*User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ElectionService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ById)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ElectionServiceServer).DeleteUser(ctx, in)
+		return srv.(UserServiceServer).DeleteUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.ElectionService/DeleteUser",
+		FullMethod: "/protos.UserService/DeleteUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElectionServiceServer).DeleteUser(ctx, req.(*ById))
+		return srv.(UserServiceServer).DeleteUser(ctx, req.(*ById))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ElectionService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(User)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ElectionServiceServer).UpdateUser(ctx, in)
+		return srv.(UserServiceServer).UpdateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.ElectionService/UpdateUser",
+		FullMethod: "/protos.UserService/UpdateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElectionServiceServer).UpdateUser(ctx, req.(*User))
+		return srv.(UserServiceServer).UpdateUser(ctx, req.(*User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ElectionService_GetByIdUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_GetByIdUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ById)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ElectionServiceServer).GetByIdUser(ctx, in)
+		return srv.(UserServiceServer).GetByIdUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.ElectionService/GetByIdUser",
+		FullMethod: "/protos.UserService/GetByIdUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElectionServiceServer).GetByIdUser(ctx, req.(*ById))
+		return srv.(UserServiceServer).GetByIdUser(ctx, req.(*ById))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ElectionService_GetAllUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_GetAllUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(User)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ElectionServiceServer).GetAllUser(ctx, in)
+		return srv.(UserServiceServer).GetAllUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.ElectionService/GetAllUser",
+		FullMethod: "/protos.UserService/GetAllUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElectionServiceServer).GetAllUser(ctx, req.(*User))
+		return srv.(UserServiceServer).GetAllUser(ctx, req.(*User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ElectionService_ServiceDesc is the grpc.ServiceDesc for ElectionService service.
+// UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ElectionService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "protos.ElectionService",
-	HandlerType: (*ElectionServiceServer)(nil),
+var UserService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "protos.UserService",
+	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateUser",
-			Handler:    _ElectionService_CreateUser_Handler,
+			Handler:    _UserService_CreateUser_Handler,
 		},
 		{
 			MethodName: "DeleteUser",
-			Handler:    _ElectionService_DeleteUser_Handler,
+			Handler:    _UserService_DeleteUser_Handler,
 		},
 		{
 			MethodName: "UpdateUser",
-			Handler:    _ElectionService_UpdateUser_Handler,
+			Handler:    _UserService_UpdateUser_Handler,
 		},
 		{
 			MethodName: "GetByIdUser",
-			Handler:    _ElectionService_GetByIdUser_Handler,
+			Handler:    _UserService_GetByIdUser_Handler,
 		},
 		{
 			MethodName: "GetAllUser",
-			Handler:    _ElectionService_GetAllUser_Handler,
+			Handler:    _UserService_GetAllUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
