@@ -1,21 +1,21 @@
 package config
 
 import (
-  "fmt"
-  "os"
+	"fmt"
+	"os"
 
-  "github.com/joho/godotenv"
-  "github.com/spf13/cast"
+	"github.com/joho/godotenv"
+	"github.com/spf13/cast"
 )
 
 type Config struct {
-  HTTPPort string
+	HTTPPort string
 
-  PostgresHost     string
-  PostgresPort     int
-  PostgresUser     string
-  PostgresPassword string
-  PostgresDatabase string
+	PostgresHost     string
+	PostgresPort     int
+	PostgresUser     string
+	PostgresPassword string
+	PostgresDatabase string
 
   DefaultOffset string
   DefaultLimit  string
@@ -25,13 +25,13 @@ type Config struct {
 
 
 func Load() Config {
-  if err := godotenv.Load(); err != nil {
-    fmt.Println("No .env file found")
-  }
+	if err := godotenv.Load(); err != nil {
+		fmt.Println("No .env file found")
+	}
 
-  config := Config{}
+	config := Config{}
 
-  config.HTTPPort = cast.ToString(getOrReturnDefaultValue("HTTP_PORT", ":8081"))
+	config.HTTPPort = cast.ToString(getOrReturnDefaultValue("HTTP_PORT", ":8081"))
 
   config.PostgresHost = cast.ToString(getOrReturnDefaultValue("POSTGRES_HOST", "localhost"))
   config.PostgresPort = cast.ToInt(getOrReturnDefaultValue("POSTGRES_PORT", 5432))
@@ -46,11 +46,11 @@ func Load() Config {
 }
 
 func getOrReturnDefaultValue(key string, defaultValue interface{}) interface{} {
-  val, exists := os.LookupEnv(key)
+	val, exists := os.LookupEnv(key)
 
-  if exists {
-    return val
-  }
+	if exists {
+		return val
+	}
 
-  return defaultValue
+	return defaultValue
 }

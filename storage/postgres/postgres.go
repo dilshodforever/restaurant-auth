@@ -3,6 +3,7 @@ package postgres
 import (
 	"database/sql"
 	"fmt"
+
 	"github.com/dilshodforever/restaurant-auth/config"
 	u "github.com/dilshodforever/restaurant-auth/storage"
 
@@ -10,7 +11,7 @@ import (
 )
 
 type Storage struct {
-	Db      *sql.DB
+	Db    *sql.DB
 	Users u.User
 }
 
@@ -32,7 +33,7 @@ func NewPostgresStorage() (u.InitRoot, error) {
 
 }
 
-func (s *Storage) User() u.User{
+func (s *Storage) User() u.User {
 	if s.Users == nil {
 		s.Users = &UserStorage{s.Db}
 	}

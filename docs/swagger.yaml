@@ -138,13 +138,6 @@ paths:
       consumes:
       - application/json
       description: GetAll page
-      parameters:
-      - description: getall
-        in: body
-        name: getall
-        required: true
-        schema:
-          $ref: '#/definitions/genprotos.User'
       produces:
       - application/json
       responses:
@@ -153,7 +146,7 @@ paths:
           schema:
             $ref: '#/definitions/genprotos.GetAllUsers'
         "401":
-          description: Error while GetAlld
+          description: Error while GetAll
           schema:
             type: string
       security:

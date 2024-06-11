@@ -201,17 +201,6 @@ const docTemplate = `{
                     "User"
                 ],
                 "summary": "GetAll User",
-                "parameters": [
-                    {
-                        "description": "getall",
-                        "name": "getall",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/genprotos.User"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "GetAll Successful",
@@ -220,7 +209,7 @@ const docTemplate = `{
                         }
                     },
                     "401": {
-                        "description": "Error while GetAlld",
+                        "description": "Error while GetAll",
                         "schema": {
                             "type": "string"
                         }

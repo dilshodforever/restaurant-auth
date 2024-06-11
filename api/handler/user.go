@@ -82,17 +82,12 @@ func (h *Handler) DeleteUser(ctx *gin.Context){
 // @Accept  json
 // @Produce  json
 // @Security  BearerAuth
-// @Param   getall     body    pb.User     true        "getall"
 // @Success 200 {object} pb.GetAllUsers   "GetAll Successful"
 // @Failure 401 {string} string  "Error while GetAll"
 // @Router /user/getall [get]
 func (h *Handler) GetAllUser(ctx *gin.Context){
-	arr:=&pb.User{}
-	err:=ctx.BindJSON(&arr)
-	if err!=nil{
-		panic(err)
-	}
-	res, err:=h.User.GetAllUser(ctx, arr)
+
+	res, err:=h.User.GetAllUser(ctx, &pb.User{})
 	if err!=nil{
 		panic(err)
 	}
