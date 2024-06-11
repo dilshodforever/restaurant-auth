@@ -82,6 +82,7 @@ func (h *Handler) DeleteUser(ctx *gin.Context){
 // @Accept  json
 // @Produce  json
 // @Security  BearerAuth
+// @Param query query pb.User true "Query parameter"
 // @Success 200 {object} pb.GetAllUsers   "GetAll Successful"
 // @Failure 401 {string} string  "Error while GetAll"
 // @Router /user/getall [get]

@@ -138,6 +138,19 @@ paths:
       consumes:
       - application/json
       description: GetAll page
+      parameters:
+      - in: query
+        name: email
+        type: string
+      - in: query
+        name: id
+        type: string
+      - in: query
+        name: password
+        type: string
+      - in: query
+        name: user_name
+        type: string
       produces:
       - application/json
       responses:
