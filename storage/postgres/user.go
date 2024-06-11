@@ -98,12 +98,12 @@ func (p *UserStorage) DeleteUser(id *pb.ById) (*pb.Void, error) {
 	return nil, err
 }
 
-func (p *UserStorage) LoginUser(userName string) (*pb.User, error) {
+func (p *UserStorage) LoginUser(userName *pb.User) (*pb.User, error) {
 	query := `
 			SELECT user_name, email from users 
 			where user_name =$1 and delated_at=0
 		`
-	row := p.db.QueryRow(query, userName)
+	row := p.db.QueryRow(query, userName.UserName)
 
 	var user pb.User
 

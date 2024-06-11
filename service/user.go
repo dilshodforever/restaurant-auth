@@ -10,7 +10,6 @@ import (
 
 type UserService struct {
 	stg s.InitRoot
-	pb.UnimplementedUserServiceServer
 }
 
 func NewUserService(stg s.InitRoot) *UserService {
@@ -25,7 +24,7 @@ func (c *UserService) CreateUser(ctx context.Context, User *pb.User) (*pb.Void, 
 	return pb, err
 }
 
-func (c *UserService) GetAllUsers(ctx context.Context, pb *pb.User) (*pb.GetAllUsers, error) {
+func (c *UserService) GetAllUser(ctx context.Context, pb *pb.User) (*pb.GetAllUsers, error) {
 	Users, err := c.stg.User().GetAllUser(pb)
 	if err != nil {
 		log.Print(err)
@@ -61,8 +60,8 @@ func (c *UserService) DeleteUser(ctx context.Context, id *pb.ById) (*pb.Void, er
 	return pb, err
 }
 
-func (c *UserService) Login(ctx context.Context, username *pb.User) (*pb.User, error) {
-	prod, err := c.stg.User().LoginUser(username.UserName)
+func (c *UserService) LoginUser(ctx context.Context, username *pb.User) (*pb.User, error) {
+	prod, err := c.stg.User().LoginUser(username)
 	if err != nil {
 		log.Print(err)
 	}

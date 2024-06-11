@@ -13,5 +13,5 @@ type User interface {
 	GetAllUser(_ *pb.User) (*pb.GetAllUsers, error)
 	UpdateUser(user *pb.User) (*pb.Void, error)
 	DeleteUser(id *pb.ById) (*pb.Void, error)
-	LoginUser(userName string) (*pb.User, error)
+	LoginUser(user *pb.User ) (*pb.User, error)
 }

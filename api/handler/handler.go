@@ -1,11 +1,11 @@
 package handler
 
-import pb "github.com/dilshodforever/restaurant-auth/genprotos"
+import pb "github.com/dilshodforever/restaurant-auth/service"
 
 type Handler struct {
-	User   pb.UserServiceClient
+	User   *pb.UserService
 }
 
-func NewHandler(us pb.UserServiceClient) *Handler {
+func NewHandler(us *pb.UserService) *Handler {
 	return &Handler{us}
 }

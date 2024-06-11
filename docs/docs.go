@@ -15,44 +15,6 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/User/LoginUser/{id}": {
-            "post": {
-                "description": "LoginUser page",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "User"
-                ],
-                "summary": "LoginUser User",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "User ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "LoginUser Successful",
-                        "schema": {
-                            "$ref": "#/definitions/genprotos.User"
-                        }
-                    },
-                    "401": {
-                        "description": "Error while LoginUserd",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "/User/delete/{id}": {
             "delete": {
                 "description": "Delete page",
@@ -91,37 +53,13 @@ const docTemplate = `{
                 }
             }
         },
-        "/User/getall": {
-            "get": {
-                "description": "GetAll page",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "User"
-                ],
-                "summary": "GetAll User",
-                "responses": {
-                    "200": {
-                        "description": "GetAll Successful",
-                        "schema": {
-                            "$ref": "#/definitions/genprotos.GetAllUsers"
-                        }
-                    },
-                    "401": {
-                        "description": "Error while GetAlld",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "/User/getbyid/{id}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "GetById page",
                 "consumes": [
                     "application/json"
@@ -244,6 +182,91 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/user/getall": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "GetAll page",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "GetAll User",
+                "parameters": [
+                    {
+                        "description": "getall",
+                        "name": "getall",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genprotos.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "GetAll Successful",
+                        "schema": {
+                            "$ref": "#/definitions/genprotos.GetAllUsers"
+                        }
+                    },
+                    "401": {
+                        "description": "Error while GetAlld",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "description": "LoginUser page",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "/LoginUser",
+                "parameters": [
+                    {
+                        "description": "Create",
+                        "name": "Create",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genprotos.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "LoginUser Successful",
+                        "schema": {
+                            "$ref": "#/definitions/genprotos.User"
+                        }
+                    },
+                    "401": {
+                        "description": "Error while LoginUserd",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -275,17 +298,24 @@ const docTemplate = `{
                 }
             }
         }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authourization",
+            "in": "header"
+        }
     }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "",
-	Host:             "",
-	BasePath:         "",
+	Version:          "1.0",
+	Host:             "localhost:8080",
+	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "",
-	Description:      "",
+	Description:      "Voting service",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

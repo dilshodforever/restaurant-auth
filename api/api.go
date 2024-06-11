@@ -4,7 +4,7 @@ import (
 	"github.com/dilshodforever/restaurant-auth/api/handler"
 	"github.com/dilshodforever/restaurant-auth/api/middleware"
 	_ "github.com/dilshodforever/restaurant-auth/docs"
-	"github.com/gin-contrib/cors"
+	//"github.com/gin-contrib/cors"
 
 	"github.com/gin-gonic/gin"
 	files "github.com/swaggo/files"
@@ -18,16 +18,12 @@ import (
 // @BasePath /
 // @securityDefinitions.apikey BearerAuth
 // @in header
+// @name Authourization
+
+
 func NewGin(h *handler.Handler) *gin.Engine {
 	r := gin.Default()
-	corsConfig := cors.Config{
-		AllowOrigins:     []string{"http://localhost", "http://localhost:7070"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Authorization", "Content-Type"},
-		AllowCredentials: true,
-	}
-	r.Use(cors.New(corsConfig))
-
+	
 	
 	r.Use(middleware.MiddleWare())
 	u := r.Group("/user")

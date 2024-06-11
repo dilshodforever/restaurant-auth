@@ -1,3 +1,4 @@
+basePath: /
 definitions:
   genprotos.GetAllUsers:
     properties:
@@ -17,34 +18,12 @@ definitions:
       user_name:
         type: string
     type: object
+host: localhost:8080
 info:
   contact: {}
+  description: Voting service
+  version: "1.0"
 paths:
-  /User/LoginUser/{id}:
-    post:
-      consumes:
-      - application/json
-      description: LoginUser page
-      parameters:
-      - description: User ID
-        in: path
-        name: id
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: LoginUser Successful
-          schema:
-            $ref: '#/definitions/genprotos.User'
-        "401":
-          description: Error while LoginUserd
-          schema:
-            type: string
-      summary: LoginUser User
-      tags:
-      - User
   /User/delete/{id}:
     delete:
       consumes:
@@ -70,25 +49,6 @@ paths:
       summary: Delete User
       tags:
       - User
-  /User/getall:
-    get:
-      consumes:
-      - application/json
-      description: GetAll page
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: GetAll Successful
-          schema:
-            $ref: '#/definitions/genprotos.GetAllUsers'
-        "401":
-          description: Error while GetAlld
-          schema:
-            type: string
-      summary: GetAll User
-      tags:
-      - User
   /User/getbyid/{id}:
     get:
       consumes:
@@ -111,6 +71,8 @@ paths:
           description: Error while GetByIdd
           schema:
             type: string
+      security:
+      - BearerAuth: []
       summary: GetById User
       tags:
       - User
@@ -171,4 +133,63 @@ paths:
       summary: Create User
       tags:
       - User
+  /user/getall:
+    get:
+      consumes:
+      - application/json
+      description: GetAll page
+      parameters:
+      - description: getall
+        in: body
+        name: getall
+        required: true
+        schema:
+          $ref: '#/definitions/genprotos.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetAll Successful
+          schema:
+            $ref: '#/definitions/genprotos.GetAllUsers'
+        "401":
+          description: Error while GetAlld
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: GetAll User
+      tags:
+      - User
+  /user/login:
+    post:
+      consumes:
+      - application/json
+      description: LoginUser page
+      parameters:
+      - description: Create
+        in: body
+        name: Create
+        required: true
+        schema:
+          $ref: '#/definitions/genprotos.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: LoginUser Successful
+          schema:
+            $ref: '#/definitions/genprotos.User'
+        "401":
+          description: Error while LoginUserd
+          schema:
+            type: string
+      summary: /LoginUser
+      tags:
+      - User
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authourization
+    type: apiKey
 swagger: "2.0"

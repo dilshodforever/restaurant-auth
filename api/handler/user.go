@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"github.com/dilshodforever/restaurant-auth/api/token"
+
 	pb "github.com/dilshodforever/restaurant-auth/genprotos"
 
 	"github.com/gin-gonic/gin"
@@ -79,9 +81,11 @@ func (h *Handler) DeleteUser(ctx *gin.Context){
 // @Tags User
 // @Accept  json
 // @Produce  json
+// @Security  BearerAuth
+// @Param   getall     body    pb.User     true        "getall"
 // @Success 200 {object} pb.GetAllUsers   "GetAll Successful"
-// @Failure 401 {string} string  "Error while GetAlld"
-// @Router /User/getall [get]
+// @Failure 401 {string} string  "Error while GetAll"
+// @Router /user/getall [get]
 func (h *Handler) GetAllUser(ctx *gin.Context){
 	arr:=&pb.User{}
 	err:=ctx.BindJSON(&arr)
@@ -101,6 +105,7 @@ func (h *Handler) GetAllUser(ctx *gin.Context){
 // @Tags User
 // @Accept  json
 // @Produce  json
+// @Security  BearerAuth
 // @Param     id path string true "User ID"
 // @Success 200 {object} pb.User   "GetById Successful"
 // @Failure 401 {string} string "Error while GetByIdd"
@@ -115,15 +120,15 @@ func (h *Handler) GetbyIdUser(ctx *gin.Context){
 }
 
 // GetByIdUser handles the creation of a new User
-// @Summary LoginUser User
+// @Summary /LoginUser
 // @Description LoginUser page
 // @Tags User
 // @Accept  json
 // @Produce  json
-// @Param     id path string true "User ID"
+// @Param   Create     body    pb.User     true        "Create"
 // @Success 200 {object} pb.User   "LoginUser Successful"
 // @Failure 401 {string} string "Error while LoginUserd"
-// @Router /User/LoginUser/{id} [post]
+// @Router /user/login [post]
 func (h *Handler) LoginUser(ctx *gin.Context){
 	user:=&pb.User{}
 	err:=ctx.ShouldBindJSON(user)
@@ -134,6 +139,7 @@ func (h *Handler) LoginUser(ctx *gin.Context){
 	if err!=nil{
 		panic(err)
 	}
-	ctx.JSON(200, res)
+	t:=token.GenereteJWTToken(res)
+	ctx.JSON(200, t)
 }
 
