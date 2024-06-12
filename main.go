@@ -20,8 +20,8 @@ func main() {
 	h := handler.NewHandler(us)
 	r := api.NewGin(h)
 
-	fmt.Println("Server started on port:8080")
-	err = r.Run()
+	fmt.Println("Server started on port:8081")
+	err = r.Run(":8081")
 	if err != nil {
 		log.Fatal("Error while Run: ", err.Error())
 	}

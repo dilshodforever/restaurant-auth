@@ -18,10 +18,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// RestoranrviceClient is the client API for Restoranrvice service.
+// RestoranServiceClient is the client API for RestoranService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type RestoranrviceClient interface {
+type RestoranServiceClient interface {
 	CreateRestoran(ctx context.Context, in *Restoran, opts ...grpc.CallOption) (*Void, error)
 	DeleteRestoran(ctx context.Context, in *ById, opts ...grpc.CallOption) (*Void, error)
 	UpdateRestoran(ctx context.Context, in *Restoran, opts ...grpc.CallOption) (*Void, error)
@@ -29,219 +29,219 @@ type RestoranrviceClient interface {
 	GetAllRestoran(ctx context.Context, in *Restoran, opts ...grpc.CallOption) (*GetAllRestorans, error)
 }
 
-type restoranrviceClient struct {
+type restoranServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewRestoranrviceClient(cc grpc.ClientConnInterface) RestoranrviceClient {
-	return &restoranrviceClient{cc}
+func NewRestoranServiceClient(cc grpc.ClientConnInterface) RestoranServiceClient {
+	return &restoranServiceClient{cc}
 }
 
-func (c *restoranrviceClient) CreateRestoran(ctx context.Context, in *Restoran, opts ...grpc.CallOption) (*Void, error) {
+func (c *restoranServiceClient) CreateRestoran(ctx context.Context, in *Restoran, opts ...grpc.CallOption) (*Void, error) {
 	out := new(Void)
-	err := c.cc.Invoke(ctx, "/protos.Restoranrvice/CreateRestoran", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.RestoranService/CreateRestoran", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *restoranrviceClient) DeleteRestoran(ctx context.Context, in *ById, opts ...grpc.CallOption) (*Void, error) {
+func (c *restoranServiceClient) DeleteRestoran(ctx context.Context, in *ById, opts ...grpc.CallOption) (*Void, error) {
 	out := new(Void)
-	err := c.cc.Invoke(ctx, "/protos.Restoranrvice/DeleteRestoran", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.RestoranService/DeleteRestoran", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *restoranrviceClient) UpdateRestoran(ctx context.Context, in *Restoran, opts ...grpc.CallOption) (*Void, error) {
+func (c *restoranServiceClient) UpdateRestoran(ctx context.Context, in *Restoran, opts ...grpc.CallOption) (*Void, error) {
 	out := new(Void)
-	err := c.cc.Invoke(ctx, "/protos.Restoranrvice/UpdateRestoran", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.RestoranService/UpdateRestoran", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *restoranrviceClient) GetByIdRestoran(ctx context.Context, in *ById, opts ...grpc.CallOption) (*Restoran, error) {
+func (c *restoranServiceClient) GetByIdRestoran(ctx context.Context, in *ById, opts ...grpc.CallOption) (*Restoran, error) {
 	out := new(Restoran)
-	err := c.cc.Invoke(ctx, "/protos.Restoranrvice/GetByIdRestoran", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.RestoranService/GetByIdRestoran", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *restoranrviceClient) GetAllRestoran(ctx context.Context, in *Restoran, opts ...grpc.CallOption) (*GetAllRestorans, error) {
+func (c *restoranServiceClient) GetAllRestoran(ctx context.Context, in *Restoran, opts ...grpc.CallOption) (*GetAllRestorans, error) {
 	out := new(GetAllRestorans)
-	err := c.cc.Invoke(ctx, "/protos.Restoranrvice/GetAllRestoran", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/protos.RestoranService/GetAllRestoran", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// RestoranrviceServer is the server API for Restoranrvice service.
-// All implementations must embed UnimplementedRestoranrviceServer
+// RestoranServiceServer is the server API for RestoranService service.
+// All implementations must embed UnimplementedRestoranServiceServer
 // for forward compatibility
-type RestoranrviceServer interface {
+type RestoranServiceServer interface {
 	CreateRestoran(context.Context, *Restoran) (*Void, error)
 	DeleteRestoran(context.Context, *ById) (*Void, error)
 	UpdateRestoran(context.Context, *Restoran) (*Void, error)
 	GetByIdRestoran(context.Context, *ById) (*Restoran, error)
 	GetAllRestoran(context.Context, *Restoran) (*GetAllRestorans, error)
-	mustEmbedUnimplementedRestoranrviceServer()
+	mustEmbedUnimplementedRestoranServiceServer()
 }
 
-// UnimplementedRestoranrviceServer must be embedded to have forward compatible implementations.
-type UnimplementedRestoranrviceServer struct {
+// UnimplementedRestoranServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedRestoranServiceServer struct {
 }
 
-func (UnimplementedRestoranrviceServer) CreateRestoran(context.Context, *Restoran) (*Void, error) {
+func (UnimplementedRestoranServiceServer) CreateRestoran(context.Context, *Restoran) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRestoran not implemented")
 }
-func (UnimplementedRestoranrviceServer) DeleteRestoran(context.Context, *ById) (*Void, error) {
+func (UnimplementedRestoranServiceServer) DeleteRestoran(context.Context, *ById) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRestoran not implemented")
 }
-func (UnimplementedRestoranrviceServer) UpdateRestoran(context.Context, *Restoran) (*Void, error) {
+func (UnimplementedRestoranServiceServer) UpdateRestoran(context.Context, *Restoran) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRestoran not implemented")
 }
-func (UnimplementedRestoranrviceServer) GetByIdRestoran(context.Context, *ById) (*Restoran, error) {
+func (UnimplementedRestoranServiceServer) GetByIdRestoran(context.Context, *ById) (*Restoran, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByIdRestoran not implemented")
 }
-func (UnimplementedRestoranrviceServer) GetAllRestoran(context.Context, *Restoran) (*GetAllRestorans, error) {
+func (UnimplementedRestoranServiceServer) GetAllRestoran(context.Context, *Restoran) (*GetAllRestorans, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllRestoran not implemented")
 }
-func (UnimplementedRestoranrviceServer) mustEmbedUnimplementedRestoranrviceServer() {}
+func (UnimplementedRestoranServiceServer) mustEmbedUnimplementedRestoranServiceServer() {}
 
-// UnsafeRestoranrviceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to RestoranrviceServer will
+// UnsafeRestoranServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to RestoranServiceServer will
 // result in compilation errors.
-type UnsafeRestoranrviceServer interface {
-	mustEmbedUnimplementedRestoranrviceServer()
+type UnsafeRestoranServiceServer interface {
+	mustEmbedUnimplementedRestoranServiceServer()
 }
 
-func RegisterRestoranrviceServer(s grpc.ServiceRegistrar, srv RestoranrviceServer) {
-	s.RegisterService(&Restoranrvice_ServiceDesc, srv)
+func RegisterRestoranServiceServer(s grpc.ServiceRegistrar, srv RestoranServiceServer) {
+	s.RegisterService(&RestoranService_ServiceDesc, srv)
 }
 
-func _Restoranrvice_CreateRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RestoranService_CreateRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Restoran)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RestoranrviceServer).CreateRestoran(ctx, in)
+		return srv.(RestoranServiceServer).CreateRestoran(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.Restoranrvice/CreateRestoran",
+		FullMethod: "/protos.RestoranService/CreateRestoran",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RestoranrviceServer).CreateRestoran(ctx, req.(*Restoran))
+		return srv.(RestoranServiceServer).CreateRestoran(ctx, req.(*Restoran))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Restoranrvice_DeleteRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RestoranService_DeleteRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ById)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RestoranrviceServer).DeleteRestoran(ctx, in)
+		return srv.(RestoranServiceServer).DeleteRestoran(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.Restoranrvice/DeleteRestoran",
+		FullMethod: "/protos.RestoranService/DeleteRestoran",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RestoranrviceServer).DeleteRestoran(ctx, req.(*ById))
+		return srv.(RestoranServiceServer).DeleteRestoran(ctx, req.(*ById))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Restoranrvice_UpdateRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RestoranService_UpdateRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Restoran)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RestoranrviceServer).UpdateRestoran(ctx, in)
+		return srv.(RestoranServiceServer).UpdateRestoran(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.Restoranrvice/UpdateRestoran",
+		FullMethod: "/protos.RestoranService/UpdateRestoran",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RestoranrviceServer).UpdateRestoran(ctx, req.(*Restoran))
+		return srv.(RestoranServiceServer).UpdateRestoran(ctx, req.(*Restoran))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Restoranrvice_GetByIdRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RestoranService_GetByIdRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ById)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RestoranrviceServer).GetByIdRestoran(ctx, in)
+		return srv.(RestoranServiceServer).GetByIdRestoran(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.Restoranrvice/GetByIdRestoran",
+		FullMethod: "/protos.RestoranService/GetByIdRestoran",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RestoranrviceServer).GetByIdRestoran(ctx, req.(*ById))
+		return srv.(RestoranServiceServer).GetByIdRestoran(ctx, req.(*ById))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Restoranrvice_GetAllRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RestoranService_GetAllRestoran_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Restoran)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RestoranrviceServer).GetAllRestoran(ctx, in)
+		return srv.(RestoranServiceServer).GetAllRestoran(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.Restoranrvice/GetAllRestoran",
+		FullMethod: "/protos.RestoranService/GetAllRestoran",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RestoranrviceServer).GetAllRestoran(ctx, req.(*Restoran))
+		return srv.(RestoranServiceServer).GetAllRestoran(ctx, req.(*Restoran))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Restoranrvice_ServiceDesc is the grpc.ServiceDesc for Restoranrvice service.
+// RestoranService_ServiceDesc is the grpc.ServiceDesc for RestoranService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Restoranrvice_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "protos.Restoranrvice",
-	HandlerType: (*RestoranrviceServer)(nil),
+var RestoranService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "protos.RestoranService",
+	HandlerType: (*RestoranServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateRestoran",
-			Handler:    _Restoranrvice_CreateRestoran_Handler,
+			Handler:    _RestoranService_CreateRestoran_Handler,
 		},
 		{
 			MethodName: "DeleteRestoran",
-			Handler:    _Restoranrvice_DeleteRestoran_Handler,
+			Handler:    _RestoranService_DeleteRestoran_Handler,
 		},
 		{
 			MethodName: "UpdateRestoran",
-			Handler:    _Restoranrvice_UpdateRestoran_Handler,
+			Handler:    _RestoranService_UpdateRestoran_Handler,
 		},
 		{
 			MethodName: "GetByIdRestoran",
-			Handler:    _Restoranrvice_GetByIdRestoran_Handler,
+			Handler:    _RestoranService_GetByIdRestoran_Handler,
 		},
 		{
 			MethodName: "GetAllRestoran",
-			Handler:    _Restoranrvice_GetAllRestoran_Handler,
+			Handler:    _RestoranService_GetAllRestoran_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
