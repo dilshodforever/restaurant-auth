@@ -13,6 +13,7 @@ import (
 // @Description 	Create page
 // @Tags 			User
 // @Accept  		json
+// @Security  		BearerAuth
 // @Produce  		json
 // @Param   		Create  body     pb.User    true   "Create"
 // @Success 		200   {string}   string    "Create Successful"
@@ -36,6 +37,7 @@ func (h *Handler) RegisterUser(ctx *gin.Context){
 // @Description 	Update page
 // @Tags 			User
 // @Accept  		json
+// @Security  		BearerAuth
 // @Produce  		json
 // @Param     		id 		path   string     true   "User ID"
 // @Param   		Update  body   pb.User    true   "Update"
@@ -61,11 +63,12 @@ func (h *Handler) UpdateUser(ctx *gin.Context){
 // @Description 	Delete page
 // @Tags 			User
 // @Accept  		json
+// @Security  		BearerAuth
 // @Produce  		json
 // @Param     		id   path     string   true   "User ID"
 // @Success 		200 {string}  string   "Delete Successful"
 // @Failure 		401 {string}  string   "Error while Deleted"
-// @Router 			/User/delete/{id} [delete]
+// @Router 			/user/delete/{id} [delete]
 func (h *Handler) DeleteUser(ctx *gin.Context){
 	id:=pb.ById{Id: ctx.Param("id")}
 	_, err:=h.User.DeleteUser(ctx, &id)
@@ -124,6 +127,7 @@ func (h *Handler) GetbyIdUser(ctx *gin.Context){
 // @Description 	LoginUser page
 // @Tags 			User
 // @Accept  		json
+// @Security  		BearerAuth
 // @Produce  		json
 // @Param   		Create  body  pb.User   true     "Create"
 // @Success 		200 {object}  pb.User  "LoginUser Successful"

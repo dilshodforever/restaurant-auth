@@ -17,6 +17,11 @@ const docTemplate = `{
     "paths": {
         "/User/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Delete page",
                 "consumes": [
                     "application/json"
@@ -98,6 +103,11 @@ const docTemplate = `{
         },
         "/User/update/{id}": {
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Update page",
                 "consumes": [
                     "application/json"
@@ -145,6 +155,11 @@ const docTemplate = `{
         },
         "/user/create": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Create page",
                 "consumes": [
                     "application/json"
@@ -241,6 +256,11 @@ const docTemplate = `{
         },
         "/user/login": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "LoginUser page",
                 "consumes": [
                     "application/json"
@@ -322,7 +342,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:8080",
+	Host:             "localhost:8081",
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "",

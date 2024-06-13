@@ -5,11 +5,16 @@
         "contact": {},
         "version": "1.0"
     },
-    "host": "localhost:8080",
+    "host": "localhost:8081",
     "basePath": "/",
     "paths": {
         "/User/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Delete page",
                 "consumes": [
                     "application/json"
@@ -91,6 +96,11 @@
         },
         "/User/update/{id}": {
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Update page",
                 "consumes": [
                     "application/json"
@@ -138,6 +148,11 @@
         },
         "/user/create": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Create page",
                 "consumes": [
                     "application/json"
@@ -234,6 +249,11 @@
         },
         "/user/login": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "LoginUser page",
                 "consumes": [
                     "application/json"
