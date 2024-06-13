@@ -24,33 +24,6 @@ info:
   description: Voting service
   version: "1.0"
 paths:
-  /User/delete/{id}:
-    delete:
-      consumes:
-      - application/json
-      description: Delete page
-      parameters:
-      - description: User ID
-        in: path
-        name: id
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: Delete Successful
-          schema:
-            type: string
-        "401":
-          description: Error while Deleted
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      summary: Delete User
-      tags:
-      - User
   /User/getbyid/{id}:
     get:
       consumes:
@@ -111,32 +84,31 @@ paths:
       summary: Update User
       tags:
       - User
-  /user/create:
-    post:
+  /user/delete/{id}:
+    delete:
       consumes:
       - application/json
-      description: Create page
+      description: Delete page
       parameters:
-      - description: Create
-        in: body
-        name: Create
+      - description: User ID
+        in: path
+        name: id
         required: true
-        schema:
-          $ref: '#/definitions/genprotos.User'
+        type: string
       produces:
       - application/json
       responses:
         "200":
-          description: Create Successful
+          description: Delete Successful
           schema:
             type: string
         "401":
-          description: Error while Created
+          description: Error while Deleted
           schema:
             type: string
       security:
       - BearerAuth: []
-      summary: Create User
+      summary: Delete User
       tags:
       - User
   /user/getall:
@@ -199,6 +171,34 @@ paths:
       security:
       - BearerAuth: []
       summary: /LoginUser
+      tags:
+      - User
+  /user/registr:
+    post:
+      consumes:
+      - application/json
+      description: Create page
+      parameters:
+      - description: Create
+        in: body
+        name: Create
+        required: true
+        schema:
+          $ref: '#/definitions/genprotos.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create Successful
+          schema:
+            type: string
+        "401":
+          description: Error while Created
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Create User
       tags:
       - User
 securityDefinitions:

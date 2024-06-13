@@ -27,7 +27,7 @@ func NewGin(h *handler.Handler) *gin.Engine {
 	
 	r.Use(middleware.MiddleWare())
 	u := r.Group("/user")
-	u.POST("/create", h.RegisterUser)
+	u.POST("/registr", h.RegisterUser)
 	u.PUT("/update/:id", h.UpdateUser)
 	u.DELETE("/delete/:id", h.DeleteUser)
 	u.GET("/getall", h.GetAllUser)

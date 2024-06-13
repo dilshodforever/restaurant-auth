@@ -16,9 +16,9 @@ import (
 // @Security  		BearerAuth
 // @Produce  		json
 // @Param   		Create  body     pb.User    true   "Create"
-// @Success 		200   {string}   string    "Create Successful"
+// @Success 		200   {string}   pb.User   "Create Successful"
 // @Failure 		401   {string}   string    "Error while Created"
-// @Router 			/user/create [post]
+// @Router 			/user/registr [post]
 func (h *Handler) RegisterUser(ctx *gin.Context){
 		arr:=pb.User{}
 		err:=ctx.BindJSON(&arr)
@@ -29,7 +29,8 @@ func (h *Handler) RegisterUser(ctx *gin.Context){
 		if err!=nil{
 			panic(err)
 		}
-		ctx.JSON(200, "Success!!!")
+	t:=token.GenereteJWTToken(&arr)
+	ctx.JSON(200, t)
 }
 
 // UpdateUser 		handles the creation of a new user
