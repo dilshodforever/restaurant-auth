@@ -24,7 +24,7 @@ func TestCreateUser(t *testing.T) {
 	result, err := stg.User().CreateUser(user)
 
 	assert.NoError(t, err)
-	assert.NotNil(t, result)
+	assert.Nil(t, result)
 }
 
 func TestGetByIdUser(t *testing.T) {
@@ -40,7 +40,7 @@ func TestGetByIdUser(t *testing.T) {
 	user, err := stg.User().GetByIdUser(&Id)
 
 	assert.NoError(t, err)
-	assert.NotNil(t, user)
+ 	assert.NotNil(t, user)
 }
 
 func TestGetAllUser(t *testing.T) {

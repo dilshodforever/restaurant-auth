@@ -31,7 +31,6 @@ func (p *UserStorage) CreateUser(user *pb.User) (*pb.Void, error) {
 func (p *UserStorage) GetByIdUser(id *pb.ById) (*pb.User, error) {
 	query := `
 			SELECT user_name, email from users 
-			SELECT user_name, email from users 
 			where id =$1 and delated_at=0
 		`
 	row := p.db.QueryRow(query, id.Id)
