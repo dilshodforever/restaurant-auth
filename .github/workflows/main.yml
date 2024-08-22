@@ -25,7 +25,7 @@ jobs:
         script: |
           pwd
           ls
-          cd /home/najmiddin/projects/restaurant/restaurant-api-gatway
+          cd /home/najmiddin/projects/restaurant/restaurant-auth
           sudo docker compose up -d
           
           
