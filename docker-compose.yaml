@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+
+  # auth-restaurant
+  auth-restaurant:
+    container_name: auth-restaurant
+    build: ./
+    ports:
+      - "7070:7070"
